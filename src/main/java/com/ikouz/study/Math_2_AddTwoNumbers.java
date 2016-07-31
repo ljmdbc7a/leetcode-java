@@ -1,5 +1,7 @@
 package com.ikouz.study;
 
+import com.ikouz.study.domain.ListNode;
+
 /**
  * Created by liujiaming on 2016/07/16 22:44.
  */
@@ -29,15 +31,6 @@ public class Math_2_AddTwoNumbers {
             j = j != null ? j.next : j;
         }
         return ret.next;
-    }
-
-    public static class ListNode {
-        int val;
-        ListNode next;
-
-        ListNode(int x) {
-            val = x;
-        }
     }
 
     public static void main(String[] args) {
