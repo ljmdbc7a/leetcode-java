@@ -24,6 +24,6 @@ public class List_25_ReverseNodesinkGroup {
      * For k = 3, you should return: 3->2->1->4->5
      */
     public static ListNode reverseKGroup(ListNode head, int k) {
-
+        return  null;
     }
 }
