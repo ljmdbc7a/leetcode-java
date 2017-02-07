@@ -39,4 +39,31 @@ public class TestUtil {
         sb.append("]");
         System.out.println(sb);
     }
+
+    public static int[] buildIntArr(String str) {
+        if (str == null || !str.startsWith("[") || !str.endsWith("]")) {
+            return null;
+        }
+        str = str.replace("[", "").replace("]", "");
+        String[] arr = str.split(",");
+        int[] ret = new int[arr.length];
+        for (int i = 0; i < arr.length; i++) {
+            ret[i] = Integer.valueOf(arr[i]);
+        }
+        return ret;
+    }
+
+    public static void printIntArr(int[] arr) {
+        if (arr == null) {
+            System.out.println("null");
+            return;
+        }
+        StringBuffer sb = new StringBuffer("[");
+        for (int i = 0; i < arr.length; i++) {
+            sb.append(arr[i]).append(",");
+        }
+        sb.deleteCharAt(sb.length() - 1);
+        sb.append("]");
+        System.out.println(sb);
+    }
 }
