@@ -1,6 +1,11 @@
 package com.ikouz.algorithm.leetcode.utils;
 
 import com.ikouz.algorithm.leetcode.domain.ListNode;
+import com.ikouz.algorithm.leetcode.domain.TreeNode;
+
+import java.util.Deque;
+import java.util.LinkedList;
+import java.util.Queue;
 
 /**
  * Created by liujiaming on 2016/08/17 16:05.
@@ -64,6 +69,67 @@ public class TestUtil {
         }
         sb.deleteCharAt(sb.length() - 1);
         sb.append("]");
+        System.out.println(sb);
+    }
+
+    /**
+     * 初始化二叉树，leetcode规则
+     *
+     * @param str example: [1,null,2,3]
+     * @see "https://leetcode.com/faq/#binary-tree"
+     */
+    public static TreeNode buildTree(String str) {
+        if (str == null || !str.startsWith("[") || !str.endsWith("]")) {
+            return null;
+        }
+        str = str.replace("[", "").replace("]", "");
+        String[] arr = str.split(",");
+        Deque<TreeNode> deque = new LinkedList<>();
+        Deque<TreeNode> dequeS = new LinkedList<>();
+        for (int i = 0; i < arr.length; i++) {
+            if (!"null".equals(arr[i])) {
+                TreeNode treeNode = new TreeNode(Integer.valueOf(arr[i]));
+                dequeS.addLast(treeNode);
+                deque.addLast(treeNode);
+            } else {
+                dequeS.addLast(null);
+            }
+        }
+        TreeNode root = dequeS.pollFirst();
+        TreeNode tmp;
+        while (deque.peekFirst() != null && !dequeS.isEmpty()) {
+            tmp = deque.pollFirst();
+            if (tmp != null) {
+                tmp.left = dequeS.pollFirst();
+                tmp.right = dequeS.pollFirst();
+            }
+        }
+        return root;
+    }
+
+    /**
+     * 广度优先遍历
+     *
+     * @param root
+     */
+    public static void printTree(TreeNode root) {
+        if (root == null) {
+            return;
+        }
+        StringBuilder sb = new StringBuilder("[");
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.offer(root);
+        while (!queue.isEmpty()) {
+            TreeNode head = queue.poll();
+            if (head != null) {
+                sb.append(head.val).append(",");
+                queue.offer(head.left);
+                queue.offer(head.right);
+            } else {
+                sb.append("null,");
+            }
+        }
+        sb.replace(sb.length() - 1, sb.length(), "]");
         System.out.println(sb);
     }
 }
