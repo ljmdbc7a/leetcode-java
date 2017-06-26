@@ -5,7 +5,7 @@ import com.ikouz.algorithm.leetcode.utils.TestUtil;
 /**
  * Created by liujiaming on 2017/02/14 14:25.
  */
-public class Sort_Selection {
+public class SelectionSort {
 
     /**
      * 选择排序

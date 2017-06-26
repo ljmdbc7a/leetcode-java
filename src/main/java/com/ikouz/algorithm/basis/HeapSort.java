@@ -5,7 +5,7 @@ import com.ikouz.algorithm.leetcode.utils.TestUtil;
 /**
  * Created by liujiaming on 2017/02/07 16:44.
  */
-public class Sort_Heap {
+public class HeapSort {
 
     /**
      * 堆排序
