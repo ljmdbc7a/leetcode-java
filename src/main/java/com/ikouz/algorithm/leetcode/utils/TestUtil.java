@@ -25,7 +25,8 @@ public class TestUtil {
             p.next = l;
             p = l;
         }
-        System.out.println("Build List: " + head.next);
+        System.out.print("Building List: ");
+        printList(head.next);
         return head.next;
     }
 
@@ -50,10 +51,33 @@ public class TestUtil {
             return null;
         }
         str = str.replace("[", "").replace("]", "");
+        if (str.length() == 0) {
+            return new int[0];
+        }
         String[] arr = str.split(",");
         int[] ret = new int[arr.length];
         for (int i = 0; i < arr.length; i++) {
-            ret[i] = Integer.valueOf(arr[i]);
+            ret[i] = Integer.valueOf(arr[i].trim());
+        }
+        return ret;
+    }
+
+    public static int[][] buildIntArrArr(String str) {
+        if (str == null || !str.startsWith("[[") || !str.endsWith("]]")) {
+            return null;
+        }
+        str = str.replace(" ", "").replace("[[", "").replace("]]", "");
+        String[] arrStr = str.split("\\],\\[");
+
+        if (arrStr.length == 0) {
+            return new int[0][0];
+        }
+        int[][] ret = new int[arrStr.length][arrStr[0].split(",").length];
+        for (int i = 0; i < arrStr.length; i++) {
+            String[] arr = arrStr[i].split(",");
+            for (int j = 0; j < arr.length; j++) {
+                ret[i][j] = Integer.valueOf(arr[j].trim());
+            }
         }
         return ret;
     }
@@ -67,9 +91,23 @@ public class TestUtil {
         for (int i = 0; i < arr.length; i++) {
             sb.append(arr[i]).append(",");
         }
-        sb.deleteCharAt(sb.length() - 1);
+        if (arr.length > 0) {
+            sb.deleteCharAt(sb.length() - 1);
+        }
         sb.append("]");
         System.out.println(sb);
+    }
+
+    public static void printIntArrArr(int[][] arr) {
+        if (arr == null) {
+            System.out.println("null");
+            return;
+        }
+        System.out.println("[");
+        for (int i = 0; i < arr.length; i++) {
+            printIntArr(arr[i]);
+        }
+        System.out.println("]");
     }
 
     /**
