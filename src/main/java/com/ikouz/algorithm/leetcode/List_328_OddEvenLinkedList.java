@@ -21,6 +21,7 @@ public class List_328_OddEvenLinkedList {
      * The first node is considered odd, the second node even and so on ...
      */
     public static ListNode oddEvenList(ListNode head) {
+        // TODO
         return null;
     }
 }
