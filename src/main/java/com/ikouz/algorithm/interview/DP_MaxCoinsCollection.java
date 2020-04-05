@@ -34,7 +34,25 @@ public class DP_MaxCoinsCollection {
         return Math.max(dp[coins.length - 2], dp[coins.length - 1]);
     }
 
+    public static int maxValue(int[] array) {
+        if (array == null) {
+            return 0;
+        }
+        if (array.length == 1) {
+            return Math.max(array[0], 0);
+        }
+        int pre = 0;
+        int max = array[0];
+        for (int i = 1; i < array.length; i++) {
+            int tmp = max;
+            max = Math.max(max + array[i], pre + array[i]);
+            pre = tmp;
+        }
+        return max;
+    }
+
     public static void main(String[] args) {
-        System.out.println(maxCoins(TestUtil.buildIntArr("[1, 5, -2, -10, 20]")));
+        System.out.println(maxCoins(TestUtil.buildIntArr("[1, 5, -2, -10, -20, 20]")));
+        System.out.println(maxValue(TestUtil.buildIntArr("[1, 5, -2, -10, -20, 20]")));
     }
 }
