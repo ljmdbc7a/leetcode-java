@@ -1,6 +1,7 @@
 package com.ikouz.algorithm.leetcode;
 
 import com.ikouz.algorithm.leetcode.domain.TreeNode;
+import com.ikouz.algorithm.leetcode.utils.TestUtil;
 
 /**
  * Given two binary trees and imagine that when you put one of them to cover the other, some nodes of the two trees are overlapped while the others are not.
@@ -26,11 +27,29 @@ import com.ikouz.algorithm.leetcode.domain.TreeNode;
  *
  * @author liujiaming
  * @since 2018/03/31
+ *
+ * 递归和非递归两种解法。
  */
 public class Tree_617_MergeTwoBinaryTrees {
 
-    public TreeNode mergeTrees(TreeNode t1, TreeNode t2) {
+    public static TreeNode mergeTrees(TreeNode t1, TreeNode t2) {
+        if (t1 == null) {
+            return t2;
+        }
+        if (t2 == null) {
+            return t1;
+        }
 
-        return null;
+        t1.val += t2.val;
+        t1.left = mergeTrees(t1.left, t2.left);
+        t1.right = mergeTrees(t1.right, t2.right);
+        return t1;
     }
+
+    public static void main(String[] args) {
+        TreeNode t1 = TestUtil.buildTree("[1, 3, 2, 5]");
+        TreeNode t2 = TestUtil.buildTree("[2, 1, 3, null, null, 4, 7]");
+        TestUtil.printTree(mergeTrees(t1, t2));
+    }
+
 }

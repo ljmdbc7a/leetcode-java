@@ -125,8 +125,8 @@ public class TestUtil {
         Deque<TreeNode> deque = new LinkedList<>();
         Deque<TreeNode> dequeS = new LinkedList<>();
         for (int i = 0; i < arr.length; i++) {
-            if (!"null".equals(arr[i])) {
-                TreeNode treeNode = new TreeNode(Integer.valueOf(arr[i]));
+            if (!"null".equals(arr[i].trim())) {
+                TreeNode treeNode = new TreeNode(Integer.valueOf(arr[i].trim()));
                 dequeS.addLast(treeNode);
                 deque.addLast(treeNode);
             } else {
